@@ -51,8 +51,6 @@ namespace Cafe_Repository_Tests
         [TestMethod]
         public void GetByName_ShouldReturnCorrectItem()
         {
-            //ARRANGE
-
             //ACT
             MenuItems searchResult = _repo.GetItemsByName("Meat Lover's Delight");
 

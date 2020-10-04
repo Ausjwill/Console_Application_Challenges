@@ -17,11 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Badges_Console_App", "Badge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cafe_Repository_Tests", "Cafe_Tests\Cafe_Repository_Tests.csproj", "{64C77BBD-49FC-4116-A8C7-7742C440D272}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims_Tests", "Claims_Tests\Claims_Tests.csproj", "{70245B11-E169-4C03-9FEB-86FAB07C8B82}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claims_Repository_Tests", "Claims_Tests\Claims_Repository_Tests.csproj", "{70245B11-E169-4C03-9FEB-86FAB07C8B82}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Badges_Tests", "Badges_Tests\Badges_Tests.csproj", "{EB51B21C-4A96-4C28-967B-CA902E806E3F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cafe_Repository", "Cafe_Repository\Cafe_Repository.csproj", "{57CDE44A-2F55-4C70-B295-EB5429588F4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Claim_Repository", "Claim_Repository\Claim_Repository.csproj", "{D0DB0122-F3A5-4130-A0B2-14106C394E26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{57CDE44A-2F55-4C70-B295-EB5429588F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57CDE44A-2F55-4C70-B295-EB5429588F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57CDE44A-2F55-4C70-B295-EB5429588F4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0DB0122-F3A5-4130-A0B2-14106C394E26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0DB0122-F3A5-4130-A0B2-14106C394E26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0DB0122-F3A5-4130-A0B2-14106C394E26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0DB0122-F3A5-4130-A0B2-14106C394E26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +75,7 @@ Global
 		{70245B11-E169-4C03-9FEB-86FAB07C8B82} = {192B9DB8-B03E-497D-AF50-419DD2AFF873}
 		{EB51B21C-4A96-4C28-967B-CA902E806E3F} = {EA430D1B-3561-496A-BADA-F9364F4046F5}
 		{57CDE44A-2F55-4C70-B295-EB5429588F4E} = {9668F74F-6417-4445-8042-0EA8213EE9EE}
+		{D0DB0122-F3A5-4130-A0B2-14106C394E26} = {192B9DB8-B03E-497D-AF50-419DD2AFF873}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B604CF93-6CE3-485F-B267-40C418356D70}

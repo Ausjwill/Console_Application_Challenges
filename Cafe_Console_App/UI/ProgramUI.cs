@@ -14,32 +14,33 @@ namespace Cafe_Console_App
         public void Run()
         {
             Console.Title = "Komodo Cafe";
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             string title = @"
                           __________________________________________________________
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                        Komodo Cafe                       ||
-                        ||                           Menu                           ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||                                                          ||
-                        ||__________________________________________________________||
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                        Komodo Cafe                       |
+                         |                           Menu                           |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |                                                          |
+                         |  -Ausjwill                                               |
+                         |__________________________________________________________|
 ";
             Console.WriteLine(title);
             Thread.Sleep(5000);
