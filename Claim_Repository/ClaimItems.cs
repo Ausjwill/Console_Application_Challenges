@@ -20,7 +20,7 @@ namespace Claim_Repository
         {
             get
             {
-                if (DateOfClaim.Day <= DateOfAccident.Day+30)
+                if (DateOfClaim.Day <= DateOfAccident.Day + 30)
                 {
                     return true;
                 }

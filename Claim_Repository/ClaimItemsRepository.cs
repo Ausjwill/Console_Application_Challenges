@@ -28,17 +28,18 @@ namespace Claim_Repository
         }
 
         //READ ONLY TOP CLAIM
-        //public ClaimItems GetNextClaim()
-        //{
-        //    foreach (ClaimItems singleItem in _claimDirectory)
-        //    {
-        //        if (singleItem == 1)
-        //        {
-        //            return singleItem;
-        //        }
-        //    }
-        //    return null;
-        //}
+        public ClaimItems GetNextClaim()
+        {
+            int count = 0;
+            foreach (ClaimItems singleItem in _claimDirectory)
+            {
+                if (count == 0)
+                {
+                    return singleItem;
+                }
+            }
+            return null;
+        }
 
         //READ ONE
         public ClaimItems GetItemsById(int claimId)
@@ -59,7 +60,5 @@ namespace Claim_Repository
             bool deleteResult = _claimDirectory.Remove(deletedClaim);
             return deleteResult;
         }
-
-
     }
 }

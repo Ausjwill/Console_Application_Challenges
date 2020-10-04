@@ -16,7 +16,7 @@ namespace Claims_Console_App
         public void Run()
         {
             Console.Title = "Komodo Claims";
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             string title = @"
                           __________________________________________________________
                          |                                                          |
@@ -56,7 +56,7 @@ namespace Claims_Console_App
             while (continueToRun)
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 Console.WriteLine("Choose a menu item:");
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Cyan;
@@ -85,9 +85,9 @@ namespace Claims_Console_App
                     default:
                         //Default
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.WriteLine("Please enter a valid number between 1 & 4. \n" +
-                            "Press any key to continue...");
-                        Console.ResetColor();
+                        Console.WriteLine("Please enter a valid number between 1 & 4.");
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("Press any key to continue...");
                         Console.ReadKey();
                         break;
                 }
@@ -97,7 +97,7 @@ namespace Claims_Console_App
         private void ShowAllClaims()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("ClaimID   Type      Description                Amount     DateOfAccident     DateOfClaim    IsValid");
             Console.ResetColor();
             List<ClaimItems> listOfClaims = _claimItemsRepo.GetAllClaims();
@@ -106,14 +106,14 @@ namespace Claims_Console_App
                 DisplaySimple(content);
             }
             Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
         private void ShowNextClaim()
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Here are the details for the next claim to be handled:");
             Console.ResetColor();
 
@@ -133,7 +133,7 @@ namespace Claims_Console_App
                 }
             }
 
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("\n" +
                 "Do you want to deal with this claim now(y/n)?");
             Console.ResetColor();
@@ -155,20 +155,27 @@ namespace Claims_Console_App
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Opton is invalid.");
             }
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Press any key to continue...");
             Console.ResetColor();
             Console.ReadKey();
         }
         private void EnterNewClaim()
         {
+            Console.Clear();
             ClaimItems content = new ClaimItems();
             //Claim ID
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Enter the claim id:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             content.ClaimId = int.Parse(Console.ReadLine());
+            Console.WriteLine();
 
             //Claim Type
-            Console.WriteLine("Enter the claim type:\n" +
-                "1) Car\n" +
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("Enter the claim type:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("1) Car\n" +
                 "2) Home\n" +
                 "3) Theft");
             string type = Console.ReadLine();
@@ -184,24 +191,36 @@ namespace Claims_Console_App
                     content.Type = ClaimType.Theft;
                     break;
             }
+            Console.WriteLine();
 
             //Description
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Enter a claim description:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             string description = Console.ReadLine();
             content.Description = description;
+            Console.WriteLine();
 
             //Amount
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Amount of Damage:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             content.Amount = float.Parse(Console.ReadLine());
+            Console.WriteLine();
 
             //Date Of Accident
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Date of Accident (eg. mm/dd/yy):");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             string accidentInput = Console.ReadLine();
             var accidentDate = DateTime.Parse(accidentInput);
             content.DateOfAccident = accidentDate;
+            Console.WriteLine();
 
             //Date Of Claim
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Date of Claim (eg. mm/dd/yy):");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             string claimInput = Console.ReadLine();
             var claimDate = DateTime.Parse(claimInput);
             content.DateOfClaim = claimDate;
@@ -229,13 +248,15 @@ namespace Claims_Console_App
         }
         private void DeleteItem()
         {
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             Console.WriteLine("Please select the item you would like to remove:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             List<ClaimItems> claimList = _claimItemsRepo.GetAllClaims();
             int count = 0;
             foreach (var content in claimList)
             {
                 count++;
-                Console.WriteLine($"Claim ID: {content.ClaimId}");
+                Console.WriteLine($"{count}) Claim ID: {content.ClaimId}");
             }
             int targetedItem = int.Parse(Console.ReadLine());
             int correctList = targetedItem - 1;
@@ -244,18 +265,20 @@ namespace Claims_Console_App
                 ClaimItems chosenContent = claimList[correctList];
                 if (_claimItemsRepo.RemoveClaim(chosenContent))
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     Console.WriteLine($"Claim ID: {chosenContent.ClaimId} has been removed.");
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine($"Could not remove Claim ID: {chosenContent.ClaimId}.");
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Opton is invalid.");
             }
-            Console.ReadKey();
         }
         private void SeedContent()
         {
@@ -271,6 +294,5 @@ namespace Claims_Console_App
             _claimItemsRepo.AddNewClaim(claimTwo);
             _claimItemsRepo.AddNewClaim(claimThree);
         }
-
     }
 }

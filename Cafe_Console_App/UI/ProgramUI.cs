@@ -54,8 +54,11 @@ namespace Cafe_Console_App
             while (continueToRun)
             {
                 Console.Clear();
-                Console.WriteLine("Enter the number of the option you'd like to select: \n" +
-                "1) Show all menu items \n" +
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("Enter the number of the option you'd like to select:");
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("1) Show all menu items \n" +
                 "2) Find by name\n" +
                 "3) Add new content \n" +
                 "4) Remove content \n" +
@@ -85,8 +88,10 @@ namespace Cafe_Console_App
                         break;
                     default:
                         //Default
-                        Console.WriteLine("Please enter a valid number between 1 & 5. \n" +
-                            "Press any key to continue......");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Please enter a valid number between 1 & 5.");
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("Press any key to continue......");
                         Console.ReadKey();
                         break;
                 }
@@ -102,13 +107,16 @@ namespace Cafe_Console_App
             {
                 DisplaySimple(content);
             }
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
         private void ShowItemsByName()
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Please enter the Name of the item you wish to see: ");
+            Console.ForegroundColor = ConsoleColor.Green;
             string mealName = Console.ReadLine();
             MenuItems content = _menuItemsRepo.GetItemsByName(mealName);
             if (content != null)
@@ -117,43 +125,60 @@ namespace Cafe_Console_App
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("There are no menu items that match that name.\n" +
                     "Please try again...");
             }
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
+            Console.ResetColor();
         }
         private void CreateNewItem()
         {
+            Console.Clear();
             MenuItems content = new MenuItems();
             //Menu Number
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Please enter the menu number of the new item:");
+            Console.ForegroundColor = ConsoleColor.Green;
             content.MealNumber = int.Parse(Console.ReadLine());
 
             //Menu Name
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Please enter the name of the new item:");
+            Console.ForegroundColor = ConsoleColor.Green;
             string mealName = Console.ReadLine();
             content.MealName = mealName;
 
             //Description
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"Please enter the description for {content.MealName}:");
+            Console.ForegroundColor = ConsoleColor.Green;
             string description = Console.ReadLine();
             content.Description = description;
 
             //Ingredients
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"Please enter the ingredients for {content.MealName}:");
+            Console.ForegroundColor = ConsoleColor.Green;
             string ingredients = Console.ReadLine();
             content.Ingredients = ingredients;
 
             //Price
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"Please enter the price for {content.MealName}:");
+            Console.ForegroundColor = ConsoleColor.Green;
             content.Price = float.Parse(Console.ReadLine());
 
             _menuItemsRepo.AddItemToMenu(content);
         }
         private void DeleteItem()
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Please select the item you would like to remove:");
+            Console.ForegroundColor = ConsoleColor.Green;
             List<MenuItems> menuList = _menuItemsRepo.GetAllItems();
             int count = 0;
             foreach (var content in menuList)
@@ -168,17 +193,21 @@ namespace Cafe_Console_App
                 MenuItems chosenContent = menuList[correctList];
                 if (_menuItemsRepo.RemoveItemFromMenu(chosenContent))
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine($"{chosenContent.MealName} has been removed.");
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine($"Could not remove {chosenContent.MealName}.");
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Opton is invalid.");
             }
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Badges_Console_App
+namespace Badges_Repository
 {
-    public class SetupMethods
+    public class Class1
     {
-
     }
 }
