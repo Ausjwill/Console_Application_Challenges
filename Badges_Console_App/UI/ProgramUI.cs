@@ -68,11 +68,11 @@ namespace Badges_Console_App
                 {
                     case "1":
                         //ADD NEW
-                        //EnterNewBadge();
+                        EnterNewBadge();
                         break;
                     case "2":
                         //UPDATE BADGE
-                        //EditBadge();
+                        EditBadge();
                         break;
                     case "3":
                         //SHOW ALL
@@ -93,17 +93,106 @@ namespace Badges_Console_App
                 }
             }
         }
+        private void EnterNewBadge()
+        {
+            Console.Clear();
+            BadgeItems content = new BadgeItems();
+            Console.WriteLine("What is the number on the badge:");
+            content.BadgeId = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("List a door that it needs access to:");
+            List<string> newList = new List<string>();
+            string input = Console.ReadLine();
+            newList.Add(input);
+
+            bool keepRunning = true;
+            while (keepRunning)
+            {
+                Console.WriteLine("Any other doors(y/n)?");
+                string answer = Console.ReadLine();
+
+                if (answer.ToLower() == "y")
+                {
+                    Console.WriteLine("List a door that it needs access to:");
+                    input = Console.ReadLine();
+                    newList.Add(input);
+                }
+
+                else if (answer.ToLower() == "n")
+                {
+                    keepRunning = false;
+                }
+
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Opton is invalid.");
+                }
+            }
+            content.DoorName = newList;
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+        public void EditBadge()
+        {
+            Console.Clear();
+            Console.WriteLine("What is the badge number to update?");
+            int reply = int.Parse(Console.ReadLine());
+            BadgeItems foundContent = _badgeItemsRepo.GetBadgeById(reply);
+            if (foundContent != null) //???
+            {
+                Console.WriteLine($"{foundContent.BadgeId} has access to doors {foundContent.DoorName}");
+                Console.WriteLine("What would you like to do?\n" +
+                    "1. Remove a door\n" +
+                    "2. Add a door");
+                string option = Console.ReadLine();
+                if (option == "1")
+                {
+                    Console.WriteLine("Which door would you like to remove?");
+                    List<string> newList = new List<string>();
+                    string input = Console.ReadLine();
+                    newList.Remove(input);
+                    foundContent.DoorName = newList;
+                    Console.WriteLine("Door Removed");
+                    Console.WriteLine($"{foundContent.BadgeId} has access to doors {foundContent.DoorName}");
+                }
+                else if (option == "2")
+                {
+                    Console.WriteLine("Which door would you like to add?");
+                    List<string> newList = new List<string>();
+                    string input = Console.ReadLine();
+                    newList.Add(input);
+                    foundContent.DoorName = newList;
+                    Console.WriteLine("Door Added");
+                    Console.WriteLine($"{foundContent.BadgeId} has access to doors {foundContent.DoorName}");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Entry");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Badge number not found...");
+            }
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
         private void ShowAllBadges()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("Key");
             Console.WriteLine("Badge #	   Door Access");
-            List<BadgeItems> listOfBadges = _badgeItemsRepo.GetAllBadges();
-            foreach (BadgeItems content in listOfBadges)
+            
+            foreach (BadgeItems content in _badgeItemsRepo.GetAllBadges())
             {
                 DisplaySimple(content);
             }
+
+
+
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("Press any key to continue...");
@@ -117,9 +206,29 @@ namespace Badges_Console_App
         }
         private void SeedContent()
         {
-            var badgeOne = new BadgeItems(12345, "A7");
-            var badgeTwo = new BadgeItems(22345, "A1, A4, B1, B2");
-            var badgeThree = new BadgeItems(32345, "A4, A5");
+            string a1 = "A1";
+            string a2 = "A2";
+            string a3 = "A3";
+            string a4 = "A4";
+            string a5 = "A5";
+            string a6 = "A6";
+            string a7 = "A7";
+            string a8 = "A8";
+            string a9 = "A9";
+
+            string b1 = "B1";
+            string b2 = "B2";
+            string b3 = "B3";
+            string b4 = "B4";
+            string b5 = "B5";
+            string b6 = "B6";
+            string b7 = "B7";
+            string b8 = "B8";
+            string b9 = "B9";
+
+            BadgeItems badgeOne = new BadgeItems(12345, new List<string>() { a7 });
+            BadgeItems badgeTwo = new BadgeItems(22345, new List<string>() { a1, a4, b1, b2 });
+            BadgeItems badgeThree = new BadgeItems(32345, new List<string>() { a4, a5 });
 
             _badgeItemsRepo.AddNewBadge(badgeOne);
             _badgeItemsRepo.AddNewBadge(badgeTwo);

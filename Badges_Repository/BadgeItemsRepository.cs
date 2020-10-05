@@ -10,31 +10,74 @@ namespace Badges_Repository
 {
     public class BadgeItemsRepository
     {
-        protected readonly List<BadgeItems> _badgeDirectory = new List<BadgeItems>();
+        //DICTIONARY
+        Dictionary<int, List<string>> _badgeDirectory = new Dictionary<int, List<string>>();
+
+        List<BadgeItems> listOfBadges = new List<BadgeItems>();
+
         //CRUD
 
         //CREATE NEW BADGE
-        public bool AddNewBadge(BadgeItems newBadge)
+        public bool AddNewBadge(BadgeItems newContent)
         {
             int startingCount = _badgeDirectory.Count;
-            _badgeDirectory.Add(newBadge);
+            _badgeDirectory.Add(newContent.BadgeId, newContent.DoorName);
             bool wasAdded = (_badgeDirectory.Count > startingCount) ? true : false;
             return wasAdded;
         }
 
         //READ ALL BADGES
-        public List<BadgeItems> GetAllBadges()
+        public Dictionary<int, List<string>> GetAllBadges()
         {
             return _badgeDirectory;
         }
 
+        //READ ONE
+        public BadgeItems GetBadgeById(int badgeId)
+        {
+            foreach (BadgeItems singleContent in listOfBadges)
+            {
+                if (singleContent.BadgeId == badgeId)
+                {
+                    return singleContent;
+                }
+            }
+            return null;
+        }
+
         //UPDATE DOORS ON BADGE
+        public bool UpdateExistingContent(int badgeId, BadgeItems newContent)
+        {
+            BadgeItems oldContent = GetBadgeById(badgeId);
 
-        //ADD DOOR TO BADGE
+            if (oldContent != null)
+            {
+                oldContent.DoorName = newContent.DoorName;
 
-        //DELETE DOOR FROM BADGE
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-        //DELETE ALL DOORS FROM BADGE
+        //REMOVE DOORS FROM BADGE
+        public bool RemoveExistingContent(int badgeId, BadgeItems newContent)
+        {
+            BadgeItems oldContent = GetBadgeById(badgeId);
+
+            if (oldContent != null)
+            {
+                oldContent.DoorName = newContent.DoorName;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }

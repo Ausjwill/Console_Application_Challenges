@@ -64,8 +64,8 @@ namespace Claims_Console_App
                 "2. Take care of next claim\n" +
                 "3. Enter a new claim\n" +
                 "4. Exit");
-                string managerInput = Console.ReadLine();
-                switch (managerInput)
+                string agentInput = Console.ReadLine();
+                switch (agentInput)
                 {
                     case "1":
                         //Show All
@@ -286,9 +286,9 @@ namespace Claims_Console_App
             var dateTwo = new DateTime(06 / 01 / 2018);
 
 
-            var claimOne = new ClaimItems(1, ClaimType.Car, "Car accident on 465.", 400.00f, DateTime.Today.AddYears(-2).AddMonths(-6).AddDays(22), DateTime.Today.AddYears(-2).AddMonths(-6).AddDays(24), true);
-            var claimTwo = new ClaimItems(2, ClaimType.Home, "House fire in kitchen.", 4000.00f, DateTime.Today.AddYears(-2).AddMonths(-6).AddDays(8), DateTime.Today.AddYears(-2).AddMonths(-6).AddDays(9), true);
-            var claimThree = new ClaimItems(3, ClaimType.Theft, "Stolen pancakes.", 4.00f, DateTime.Today.AddYears(-2).AddMonths(-6).AddDays(24), DateTime.Today.AddYears(-2).AddMonths(-4).AddDays(-2), false);
+            var claimOne = new ClaimItems(1, ClaimType.Car, "Car accident on 465.", 400.00f, DateTime.Today.AddYears(-2).AddMonths(-6).AddDays(20), DateTime.Today.AddYears(-2).AddMonths(-6).AddDays(22), true);
+            var claimTwo = new ClaimItems(2, ClaimType.Home, "House fire in kitchen.", 4000.00f, new DateTime(04 / 11 / 18), new DateTime(04 / 12 / 18), true);
+            var claimThree = new ClaimItems(3, ClaimType.Theft, "Stolen pancakes.", 4.00f, dateOne, dateTwo, false);
 
             _claimItemsRepo.AddNewClaim(claimOne);
             _claimItemsRepo.AddNewClaim(claimTwo);
