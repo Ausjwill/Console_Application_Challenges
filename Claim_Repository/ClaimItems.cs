@@ -20,7 +20,8 @@ namespace Claim_Repository
         {
             get
             {
-                if (DateOfClaim.Day <= DateOfAccident.Day + 30)
+                double value = (DateOfClaim - DateOfAccident).TotalDays;
+                if (value <= 30)
                 {
                     return true;
                 }

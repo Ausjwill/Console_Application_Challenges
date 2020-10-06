@@ -35,13 +35,12 @@ namespace Badges_Repository
         //READ ONE
         public BadgeItems GetBadgeById(int badgeId)
         {
-            foreach (BadgeItems singleContent in listOfBadges)
-            {
+            var singleContent = new BadgeItems(badgeId, _badgeDirectory[badgeId]);
                 if (singleContent.BadgeId == badgeId)
                 {
                     return singleContent;
                 }
-            }
+            
             return null;
         }
 

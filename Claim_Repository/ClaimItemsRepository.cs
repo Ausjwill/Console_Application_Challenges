@@ -55,10 +55,11 @@ namespace Claim_Repository
         }
 
         //DELETE CLAIM
-        public bool RemoveClaim(ClaimItems deletedClaim)
+        public bool RemoveClaim(ClaimItems claimId)
         {
-            bool deleteResult = _claimDirectory.Remove(deletedClaim);
+            bool deleteResult = _claimDirectory.Remove(claimId);
             return deleteResult;
         }
+
     }
 }
