@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace Badges_Repository
 {
@@ -12,8 +11,6 @@ namespace Badges_Repository
     {
         //DICTIONARY
         Dictionary<int, List<string>> _badgeDirectory = new Dictionary<int, List<string>>();
-
-        List<BadgeItems> listOfBadges = new List<BadgeItems>();
 
         //CRUD
 
@@ -36,45 +33,13 @@ namespace Badges_Repository
         public BadgeItems GetBadgeById(int badgeId)
         {
             var singleContent = new BadgeItems(badgeId, _badgeDirectory[badgeId]);
-                if (singleContent.BadgeId == badgeId)
-                {
-                    return singleContent;
-                }
-            
-            return null;
-        }
-
-        //UPDATE DOORS ON BADGE
-        public bool UpdateExistingContent(int badgeId, BadgeItems newContent)
-        {
-            BadgeItems oldContent = GetBadgeById(badgeId);
-
-            if (oldContent != null)
+            if (singleContent.BadgeId == badgeId)
             {
-                oldContent.DoorName = newContent.DoorName;
-
-                return true;
+                return singleContent;
             }
             else
             {
-                return false;
-            }
-        }
-
-        //REMOVE DOORS FROM BADGE
-        public bool RemoveExistingContent(int badgeId, BadgeItems newContent)
-        {
-            BadgeItems oldContent = GetBadgeById(badgeId);
-
-            if (oldContent != null)
-            {
-                oldContent.DoorName = newContent.DoorName;
-
-                return true;
-            }
-            else
-            {
-                return false;
+                return null;
             }
         }
 

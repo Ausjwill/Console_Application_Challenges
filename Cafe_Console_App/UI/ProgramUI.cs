@@ -221,9 +221,9 @@ namespace Cafe_Console_App
         }
         private void SeedContent()
         {
-            var menuItemOne = new MenuItems(1, "Reuben", "Try our delicious Reuben sandwith, it's AMAZING!", "Corned Beef | Swiss Cheese | Sauerkraut | Russian Dressing | Rye Bread", 6.25f);
-            var menuItemTwo = new MenuItems(2, "Club", "Our club may just be the best in the world!", "Sliced Cooked Poultry | Ham or Fried Bacon | Lettuce | Tomato | Mayonnaise", 4.50f);
-            var menuItemThree = new MenuItems(3, "Chicken Sandwich", "If you're feeling chicken, then this is sure to satisfy your craving!", "Boneless, Skinless Chicken Breast | Pickles | Lettuce | Tomatoes | Bun or Roll.", 5.00f);
+            var menuItemOne = new MenuItems(1, "Reuben", "Try our delicious Reuben sandwith, it's AMAZING!", "Corned Beef, Swiss Cheese, Sauerkraut, Russian Dressing, Rye Bread", 6.25f);
+            var menuItemTwo = new MenuItems(2, "Club", "Our club may just be the best in the world!", "Sliced Cooked Poultry, Ham or Fried Bacon, Lettuce, Tomato, Mayonnaise", 4.50f);
+            var menuItemThree = new MenuItems(3, "Chicken Sandwich", "If you're feeling chicken, then this is sure to satisfy your craving!", "Boneless Skinless Chicken Breast, Pickles, Lettuce, Tomatoes, Bun or Roll.", 5.00f);
 
             _menuItemsRepo.AddItemToMenu(menuItemOne);
             _menuItemsRepo.AddItemToMenu(menuItemTwo);

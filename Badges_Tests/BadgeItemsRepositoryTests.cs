@@ -14,35 +14,20 @@ namespace Badges_Repository_Tests
         public void AddBadge_ShouldGetCorrectBoolean()
         {
             //ARRANGE
-            BadgeItems newClaim = new BadgeItems();
+            BadgeItems newBadge = new BadgeItems();
             BadgeItemsRepository repo = new BadgeItemsRepository();
 
             //ACT
-            bool addResult = repo.AddNewBadge(newClaim);
+            bool addResult = repo.AddNewBadge(newBadge);
 
             //ASSERT
             Assert.IsTrue(addResult);
-        }
-        [TestMethod]
-        public void GetAllBadges_ShouldReturnCorrectListOfClaims()
-        {
-            //ARRANGE
-            BadgeItems newObject = new BadgeItems();
-            BadgeItemsRepository repository = new BadgeItemsRepository();
-            repository.AddNewBadge(newObject);
-
-            //ACT
-            List<BadgeItems> listOfBadgeItems = repository.GetAllBadges();
-
-            //ASSERT
-            bool claimHasItems = listOfBadgeItems.Contains(newObject);
-            Assert.IsTrue(claimHasItems);
         }
         [TestInitialize]
         public void Arrange()
         {
             _repo = new BadgeItemsRepository();
-            _content = new BadgeItems(33245, new List<string>());
+            _content = new BadgeItems(33245, new List<string>() { "A1", "A2", "A3" } );
             _repo.AddNewBadge(_content);
         }
         [TestMethod]

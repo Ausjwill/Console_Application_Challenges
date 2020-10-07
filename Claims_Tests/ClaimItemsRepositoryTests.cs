@@ -42,7 +42,7 @@ namespace Claims_Tests
         public void Arrange()
         {
             _repo = new ClaimItemsRepository();
-            _content = new ClaimItems(4, ClaimType.Car, "Wreck on I-70.", 2000f, new DateTime(04 / 27 / 18), new DateTime(04 / 28 / 18), true);
+            _content = new ClaimItems(4, ClaimType.Car, "Wreck on I-70.", 2000f, new DateTime(18, 04, 27), new DateTime(18, 04, 28), true);
             _repo.AddNewClaim(_content);
         }
 
@@ -54,6 +54,16 @@ namespace Claims_Tests
 
             //ASSERT
             Assert.AreEqual(_content, searchResult);
+        }
+
+        [TestMethod]
+        public void GetNextClaim_ShouldReturnCorrectItem()
+        {
+            //ACT
+            ClaimItems nextClaim = _repo.GetItemsById(4);
+
+            //ASSERT
+            Assert.AreEqual(_content, nextClaim);
         }
 
         [TestMethod]

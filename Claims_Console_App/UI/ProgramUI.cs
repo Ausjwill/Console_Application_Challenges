@@ -253,40 +253,6 @@ namespace Claims_Console_App
                 $"Is Valid: {nextClaim.IsValid}\n" +
                 "");
         }
-        //private void DeleteItem()
-        //{
-        //    Console.ForegroundColor = ConsoleColor.DarkMagenta;
-        //    Console.WriteLine("Please select the item you would like to remove:");
-        //    Console.ForegroundColor = ConsoleColor.Cyan;
-        //    List<ClaimItems> claimList = _claimItemsRepo.GetAllClaims();
-        //    int count = 0;
-        //    foreach (var content in claimList)
-        //    {
-        //        count++;
-        //        Console.WriteLine($"{count}) Claim ID: {content.ClaimId}");
-        //    }
-        //    int targetedItem = int.Parse(Console.ReadLine());
-        //    int correctList = targetedItem - 1;
-        //    if (correctList >= 0 && correctList < claimList.Count)
-        //    {
-        //        ClaimItems chosenContent = claimList[correctList];
-        //        if (_claimItemsRepo.RemoveClaim(chosenContent))
-        //        {
-        //            Console.ForegroundColor = ConsoleColor.DarkMagenta;
-        //            Console.WriteLine($"Claim ID: {chosenContent.ClaimId} has been removed.");
-        //        }
-        //        else
-        //        {
-        //            Console.ForegroundColor = ConsoleColor.DarkRed;
-        //            Console.WriteLine($"Could not remove Claim ID: {chosenContent.ClaimId}.");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.ForegroundColor = ConsoleColor.DarkRed;
-        //        Console.WriteLine("Opton is invalid.");
-        //    }
-        //}
         private void DeleteClaim(ClaimItems content)
         {
             _claimItemsRepo.RemoveClaim(content);

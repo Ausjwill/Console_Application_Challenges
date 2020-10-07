@@ -95,12 +95,15 @@ namespace Badges_Console_App
         }
         private void EnterNewBadge()
         {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.Clear();
             BadgeItems content = new BadgeItems();
             Console.WriteLine("What is the number on the badge:");
+            Console.ForegroundColor = ConsoleColor.Gray;
             content.BadgeId = int.Parse(Console.ReadLine());
-
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("List a door that it needs access to:");
+            Console.ForegroundColor = ConsoleColor.Gray;
             List<string> newList = new List<string>();
             string input = Console.ReadLine();
             newList.Add(input);
@@ -108,12 +111,16 @@ namespace Badges_Console_App
             bool keepRunning = true;
             while (keepRunning)
             {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine("Any other doors(y/n)?");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 string answer = Console.ReadLine();
 
                 if (answer.ToLower() == "y")
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("List a door that it needs access to:");
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     input = Console.ReadLine();
                     newList.Add(input);
                 }
@@ -137,50 +144,76 @@ namespace Badges_Console_App
         }
         public void EditBadge()
         {
-            BadgeItems updatedDoorAccess = new BadgeItems();
+            Console.Clear();
             Dictionary<int, List<string>> listOfBadges = _badgeItemsRepo.GetAllBadges();
-
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("What is the badge number to update?");
+            Console.ForegroundColor = ConsoleColor.Gray;
             int badgeId = int.Parse(Console.ReadLine());
             BadgeItems foundContent = _badgeItemsRepo.GetBadgeById(badgeId);
 
-            if (foundContent != null) //???
+            if (foundContent != null)
             {
-                Console.WriteLine($"{foundContent.BadgeId} has access to doors {_badgeItemsRepo.GetAllBadges()}");
-                Console.WriteLine("What would you like to do?\n" +
-                    "1. Remove a door\n" +
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine($"{foundContent.BadgeId} has access to doors:");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                foreach (var doorList in listOfBadges[badgeId])
+                {
+                    Console.WriteLine(doorList);
+                }
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine("What would you like to do?");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.WriteLine("1. Remove a door\n" +
                     "2. Add a door");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 string option = Console.ReadLine();
                 if (option == "1")
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("Which door would you like to remove?");
-                    List<string> newList = new List<string>();
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     string input = Console.ReadLine();
-                    newList.Remove(input);
-                    foundContent.DoorName = newList;
+                    foundContent.DoorName.Remove(input);
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("Door Removed");
-                    Console.WriteLine($"{foundContent.BadgeId} has access to doors {foundContent.DoorName}");
+                    Console.WriteLine($"{foundContent.BadgeId} has access to doors:");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    foreach (var doorList in listOfBadges[badgeId])
+                    {
+                        Console.WriteLine(doorList);
+                    }
+
                 }
                 else if (option == "2")
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("Which door would you like to add?");
-                    List<string> newList = new List<string>();
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     string input = Console.ReadLine();
-                    newList.Add(input);
-                    foundContent.DoorName = newList;
+                    foundContent.DoorName.Add(input);
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     Console.WriteLine("Door Added");
-                    Console.WriteLine($"{foundContent.BadgeId} has access to doors {foundContent.DoorName}");
+                    Console.WriteLine($"{foundContent.BadgeId} has access to doors:");
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    foreach (var doorList in listOfBadges[badgeId])
+                    {
+                        Console.WriteLine(doorList);
+                    }
+
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("Invalid Entry");
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Badge number not found...");
             }
-            _badgeItemsRepo.AddNewBadge(foundContent);
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
@@ -190,61 +223,32 @@ namespace Badges_Console_App
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("Key");
             Console.WriteLine("Badge #	   Door Access");
-
-            //foreach (KeyValuePair<int, List<string>> content  in _badgeDirectory())
-            //{
-            //    //DisplaySimple(new BadgeItems(content.Key, content.Value));
-            //    Console.WriteLine($"Key = {0}, Value = {1}", content.Key, content.Value);
-            //}
-
             Dictionary<int, List<string>> listOfBadges = _badgeItemsRepo.GetAllBadges();
-            Console.WriteLine();
             foreach (var badges in listOfBadges.Keys)
             {
                 foreach (var doorList in listOfBadges[badges])
                 {
-                    Console.WriteLine("Key: " + badges + "member:" + doorList);
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine(badges + "      " + doorList);
                 }
             }
-
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine();
             Console.WriteLine("Press any key to continue... \n");
             Console.ReadKey();
-
-
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkBlue;
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
         }
 
-        private void DisplaySimple(BadgeItems content)
-        {
-            Console.ForegroundColor = ConsoleColor.Gray;
-            Console.WriteLine($"{content.BadgeId,-10} {content.DoorName}");
-        }
         private void SeedContent()
         {
             string a1 = "A1";
-            string a2 = "A2";
-            string a3 = "A3";
             string a4 = "A4";
             string a5 = "A5";
-            string a6 = "A6";
             string a7 = "A7";
-            string a8 = "A8";
-            string a9 = "A9";
 
             string b1 = "B1";
             string b2 = "B2";
-            string b3 = "B3";
-            string b4 = "B4";
-            string b5 = "B5";
-            string b6 = "B6";
-            string b7 = "B7";
-            string b8 = "B8";
-            string b9 = "B9";
 
-            BadgeItems badgeOne = new BadgeItems(12345, new List<string> { "a7" });
+            BadgeItems badgeOne = new BadgeItems(12345, new List<string> { a7 });
             BadgeItems badgeTwo = new BadgeItems(22345, new List<string> { a1, a4, b1, b2 });
             BadgeItems badgeThree = new BadgeItems(32345, new List<string> { a4, a5 });
 
